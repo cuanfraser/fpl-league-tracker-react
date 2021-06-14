@@ -8,10 +8,10 @@ const Team = () => {
 
   const updateTeamId = async (id) => {
     let resp = await findTeamById(id);
-    console.log(resp);
     if (resp.length === 0) {
       alert('Invalid ID');
     } else {
+      console.log(resp);
       setTeamData(resp);
     }
   };
@@ -21,8 +21,7 @@ const Team = () => {
       <h1>Team</h1>
 
       <TeamId updateTeamId={updateTeamId} />
-      {console.log(`Team Data: ${teamData}`)}
-      {teamData !== {} ? <TeamInfo /> : null}
+      {teamData && Object.keys(teamData).length > 0 ? <TeamInfo teamData={teamData} /> : null}
     </div>
   );
 };

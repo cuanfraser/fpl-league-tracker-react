@@ -5,14 +5,11 @@ const TeamId = ({ updateTeamId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Team ID: ${teamId} was submitted.`);
     updateTeamId(teamId);
   };
 
   return (
     <div>
-      <h1>Team</h1>
-
       <form onSubmit={handleSubmit}>
         <label>
           Team ID:

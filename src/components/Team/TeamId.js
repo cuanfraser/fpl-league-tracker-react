@@ -14,7 +14,7 @@ const TeamId = ({ updateTeamId }) => {
         <label>
           Team ID:
           <input
-            type='text'
+            type='number'
             name='team-id'
             value={teamId}
             onChange={(e) => setTeamId(e.target.value)}

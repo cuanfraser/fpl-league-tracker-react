@@ -7,8 +7,12 @@ const TeamInfo = ({teamData}) => {
 
       <h2>Team Info</h2>
       <h3>{teamData.name}</h3>
+      <p>Points: {teamData.summary_overall_points}</p>
+      <h4>Classic Leagues:</h4>
       <ul>
-        <li>Points: {teamData.summary_overall_points}</li>
+        {teamData.leagues.classic.map(league => {
+          return <li key={league.id}>{league.name}</li>
+        })}
       </ul>
     </div>
   );

@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const TeamId = () => {
-    const [teamId, setTeamId] = useState(0);
+const LeagueId = () => {
+    const [leagueId, setLeagueId] = useState(0);
     let history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        history.push(`/team/${teamId}`);
+        history.push(`/league/${leagueId}`);
     };
 
     return (
         <div>
-            <h2>Enter Team</h2>
+            <h2>Enter League</h2>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Team ID:
+                    League ID:
                     <input
                         type='number'
-                        name='team-id'
-                        value={teamId}
-                        onChange={(e) => setTeamId(e.target.value)}
+                        name='league-id'
+                        value={leagueId}
+                        onChange={(e) => setLeagueId(e.target.value)}
                     />
                 </label>
                 <input type='submit' value='Submit' />
@@ -29,4 +29,4 @@ const TeamId = () => {
     );
 };
 
-export default TeamId;
+export default LeagueId;

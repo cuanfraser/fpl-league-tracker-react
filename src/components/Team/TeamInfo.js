@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { findTeamById } from '../../services/TeamService';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 const TeamInfo = () => {
     let { teamUrlId } = useParams();
     const [teamData, setTeamData] = useState({});
+    let history = useHistory();
 
     useEffect(() => {
         retrieveTeamData(teamUrlId);
@@ -12,8 +13,9 @@ const TeamInfo = () => {
 
     const retrieveTeamData = async (id) => {
         let resp = await findTeamById(id);
-        if (resp.length === 0) {
+        if (resp.length === 0 || resp.detail === 'Not found.') {
             alert('Invalid ID');
+            history.push(`/team`);
         } else {
             console.log(resp);
             setTeamData(resp);

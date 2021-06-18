@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { findLeagueById } from '../../services/LeagueService';
 import LeagueTable from './LeagueTable';
 
 const ClassicLeague = () => {
     let { leagueUrlId } = useParams();
     const [leagueData, setLeagueData] = useState({});
+    let history = useHistory();
 
     useEffect(() => {
         retrieveLeagueData(leagueUrlId);
@@ -13,8 +14,9 @@ const ClassicLeague = () => {
 
     const retrieveLeagueData = async (id) => {
         let resp = await findLeagueById(id);
-        if (resp.length === 0) {
+        if (resp.length === 0 || resp.detail === 'Not found.') {
             alert('Invalid ID');
+            history.push(`/league`);
         } else {
             console.log(resp);
             setLeagueData(resp);
@@ -30,7 +32,7 @@ const ClassicLeague = () => {
             </div>
         );
     } else {
-      return <h1>Loading League</h1>;
+        return <h1>Loading League</h1>;
     }
 };
 

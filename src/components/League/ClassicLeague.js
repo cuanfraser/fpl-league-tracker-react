@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { findLeagueById } from '../../services/LeagueService';
+import LeagueTable from './LeagueTable';
 
 const ClassicLeague = () => {
     let { leagueUrlId } = useParams();
@@ -25,6 +26,7 @@ const ClassicLeague = () => {
             <div>
                 <h1>Classic League</h1>
                 <h2>{leagueData.league.name}</h2>
+                <LeagueTable leagueData={leagueData} />
             </div>
         );
     } else {
